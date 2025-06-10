@@ -129,6 +129,7 @@ class GameScene extends Phaser.Scene {
       }
     }
 
+    // add listener for all setInteractive objects
     this.input.on("gameobjectdown", this.onCardClicked, this);
   }
 
@@ -140,19 +141,19 @@ class GameScene extends Phaser.Scene {
     this.sounds.card.play();
 
     if (this.openedCard) {
-      // уже есть открытая карта
+      // there is already an open card
       if (this.openedCard.value === card.value) {
-        // картинки равны - запомнить
+        // if the images match - save 2 opened cards
         this.sounds.success.play();
         this.openedCard = null;
         ++this.openedCardsCount;
       } else {
-        // картинки разные - скрыть прошлую
+        // if the images are different - hide the previous card
         this.openedCard.close();
         this.openedCard = card;
       }
     } else {
-      // еще нет открытой карта
+      // there is no open card yet
       this.openedCard = card;
     }
 
